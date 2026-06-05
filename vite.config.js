@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
+const basePath = process.env.VITE_BASE_URL || '/';
+
 export default defineConfig({
+  base: basePath,
   plugins: [react()],
   server: {
     port: 4173
@@ -11,7 +14,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'firebase': ['firebase/app', 'firebase/auth', 'firebase/firestore'],
+          firebase: ['firebase/app', 'firebase/auth', 'firebase/firestore'],
           'react-vendor': ['react', 'react-dom', 'react-router-dom']
         }
       }
